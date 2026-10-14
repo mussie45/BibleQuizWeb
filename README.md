@@ -29,6 +29,6 @@ An interactive Bible quiz website designed to make learning Scripture more engag
 
 To encourage Bible study and help people test and improve their knowledge of Scripture in an enjoyable way.
 
-## 📄 License
+##🌐 Live Demo
 
-This project is open source. A license has not yet been specified.
+[Play Bible Quiz Web](https://mussie45.github.io/BibleQuizWeb/)
