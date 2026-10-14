@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bible Quiz</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <nav class="nav-bar">
+                <a href="#home" class="logo-link">
+                    <h2 class="logo">
+                        <span class="icon">📖</span>
+                        <span class="bible">Bible</span>
+                        <span class="quiz">Quiz</span>
+                    </h2>
+                </a>
+                <div class="nav-links">
+                    <a class="nav-item home-link active" href="#home">Home</a>
+                    <a class="nav-item quiz-link" href="#quiz">Quiz</a>
+                    <a class="nav-item" href="#quiz" onclick="selectMode('verse')">Verse Challenge</a>
+                    <a class="nav-item" href="#rules">Rules</a>
+                    <a class="nav-item" href="#leaderboard">Leaderboard</a>
+                    <a class="nav-item" href="#about">About</a>
+                </div>
+            </nav>
+        <!-- Home / Hero Section (First Version Layout) -->
+        <div id="home">
+            
+
+            <div class="hero-content">
+                <span class="hero-badge"> Test Your Scripture Knowledge</span>
+                <span class="The-home">
+                <div>
+                
+                
+                <h1>Welcome to BibleQuiz</h1>
+                <h2>Test your Bible knowledge. Explore Scripture. Challenge yourself.</h2>
+
+                <p>
+                    Put your knowledge of the Bible to the test with questions
+                    from the Old and New Testament. Choose your quiz mode,
+                    select your difficulty, and see how much you really know.
+                </p>
+
+                <p>
+                    Whether you're studying Scripture, preparing for a Bible quiz,
+                    or simply looking for a fun challenge, there's always another
+                    question waiting for you.
+                </p>
+                </div>
+                <div class="home-img"><img src="images/home_img.jpg" alt="An open Bible with a warm glow"></div>
+                </span>
+                <!-- Mode & Difficulty Selectors on Home Screen -->
+                
+
+               
+            </div>
+        </div>
+
+        <!-- Quiz Container Section -->
+        <div id="quiz" class="quiz-container">
+            <div class="quiz-st">
+            <h2>Customize Your Quiz</h2>
+            <h3>Choose how you want to explore the Word of God.</h3>
+            </div>
+            <div class="quiz-controls-panel">
+                    <div class="control-group">
+                        <label>Select Game Mode:</label>
+                        <div class="btn-group" id="mode-selector">
+                            <button class="mode-btn active" data-mode="general">General Questions</button>
+                            <button class="mode-btn" data-mode="verse">Choose by Verse</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="difficulty-group">
+                        <label>Difficulty Level:</label>
+                        <div class="btn-group" id="diff-selector">
+                            <button class="diff-btn active" data-diff="easy">🟢 Easy</button>
+                            <button class="diff-btn" data-diff="medium">🟡 Medium</button>
+                            <button class="diff-btn" data-diff="hard">🔴 Hard</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group hidden" id="testament-group">
+                        <label>Testament Filter:</label>
+                        <div class="btn-group" id="testament-selector">
+                            <button class="testament-btn active" data-testament="both">📚 Both Testaments</button>
+                            <button class="testament-btn" data-testament="ot">📜 Old Testament</button>
+                            <button class="testament-btn" data-testament="nt">✝️ New Testament</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Number of Questions:</label>
+                        <div class="btn-group" id="count-selector">
+                            <button class="count-btn" data-count="5">5 Questions</button>
+                            <button class="count-btn active" data-count="10">10 Questions</button>
+                            <button class="count-btn" data-count="15">15 Questions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#quiz-take" class="hero-button" id="start-quiz-btn">Start Quiz Now →</a>
+                    <a href="#rules" class="secondary-button">View Rules 📜</a>
+                </div>
+            
+            <!-- Quiz Status Bar -->
+            <div id="quiz-take" class="quiz-header">
+                <div class="quiz-badge" id="current-mode-badge">Mode: General (Easy)</div>
+                <div class="progress-wrap">
+                    <span id="question-progress">Question 1 of 10</span>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-bar" style="width: 10%;"></div>
+                    </div>
+                </div>
+                <div class="timer" id="timer-box">
+                    ⏱️ Time left: <span id="time-left">15</span> seconds
+                </div>
+            </div>
+
+            <!-- Question Box -->
+            <h2 class="question" id="question-display">
+                Loading questions...
+            </h2>
+
+            <div class="feedback-msg" id="feedback-msg"></div>
+
+            <div class="options" id="options-container">
+               
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="quiz-footer">
+                <div class="current-score-tag">
+                    Current Score: <span id="live-score">0</span> / <span id="total-answered">0</span>
+                </div>
+                <button class="next-btn" id="next-btn">Next Question →</button>
+            </div>
+
+            <!-- Results Card -->
+            <div class="result-card hidden" id="result-card">
+                <div class="result-icon" id="result-icon">🏆</div>
+                <h2 id="result-title">Quiz Completed!</h2>
+                <p class="result-score-text">
+                    Your final score is: <strong id="final-score">0</strong> / <span id="final-total">10</span>
+                    (<span id="score-percentage">0%</span>)
+                </p>
+                <p class="result-verdict" id="result-verdict"></p>
+                
+                <div class="result-actions">
+                    <button class="action-btn primary" id="play-again-btn">🔄 Play Again</button>
+                    <a href="#home" class="action-btn secondary" id="change-mode-btn">⚙️ Change Mode</a>
+                    <a href="#leaderboard" class="action-btn outline">🏅 View Leaderboard</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rules Section matching Python about_rules() -->
+        <section id="rules" class="info-section">
+            <div class="section-card">
+                <h2>📜 Bible Quiz Rules</h2>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <span class="rule-num">1️⃣</span>
+                        <div>
+                            <h3>Select Your Quiz Type</h3>
+                            <p>Choose between <strong>General Bible Questions</strong> or <strong>Choose by Verse</strong> challenge.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">2️⃣</span>
+                        <div>
+                            <h3>Choose by Verse</h3>
+                            <p>You will be shown a sacred Scripture verse from the 31,102 verses in the Holy Bible. Select the correct reference.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">3️⃣</span>
+                        <div>
+                            <h3>General Questions</h3>
+                            <p>Three difficulty levels: 🟢 <strong>Easy</strong>, 🟡 <strong>Medium</strong>, and 🔴 <strong>Hard</strong> covering Old & New Testaments.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">4️⃣</span>
+                        <div>
+                            <h3>Scoring System</h3>
+                            <p>Every correct answer gives you <strong>+1 point</strong>. Wrong answers award 0 points.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">5️⃣</span>
+                        <div>
+                            <h3>Timed Challenge</h3>
+                            <p>Answer before the 15-second countdown runs out to test quick Scripture recall!</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">6️⃣</span>
+                        <div>
+                            <h3>Most Importantly</h3>
+                            <p>Learn, have fun, challenge yourself, and read the Holy Bible! 🙏❤️</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-btn">
+                    <a href="#quiz" class="hero-button">Start Playing Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" class="info-section">
+            <div class="section-card">
+                <div class="leaderboard-header">
+                    <h2>🏅 Local Leaderboard & Recent Games</h2>
+                    <button class="clear-btn" id="clear-scores-btn">Clear History</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="leaderboard-table" id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Mode</th>
+                                <th>Difficulty</th>
+                                <th>Score</th>
+                                <th>Percentage</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-section">
+            <div class="section-card about-box">
+                <h2>📖 About BibleQuiz</h2>
+                <p>
+                    BibleQuiz is designed to help believers, students, and curious minds discover the richness of Scripture through interactive questions and verse references.
+                </p>
+                <p>
+                    Questions are sourced directly from canonical Scripture accounts and the King James Version (KJV) dataset containing 31,102 verses.
+                </p>
+                <div class="scripture-quote">
+                    <em>"All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness."</em>
+                    <span>— 2 Timothy 3:16</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 BibleQuiz. Soli Deo Gloria. Keep reading and growing in the Word. 📖</p>
+    </footer>
+
+    <!-- Dedicated Dataset file referencing kjv_bible_dataset.json & bible_quiz.json -->
+    <script src="quiz_data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
